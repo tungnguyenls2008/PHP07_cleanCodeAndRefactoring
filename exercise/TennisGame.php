@@ -5,26 +5,30 @@
  * Date: 10/27/2018
  * Time: 6:20 PM
  */
-
+const LOVE = 0;
+const FIFTEEN = 1;
+const THIRTY = 2;
+const FORTY = 3;
 class TennisGame
 {
+
     public $result = '';
 
     public function getResult($Player1Score, $Player2Score)
     {
-
-        if ($Player1Score == $Player2Score) {
+        $isTie = ($Player1Score == $Player2Score);
+        if ($isTie) {
             switch ($Player1Score) {
-                case 0:
+                case LOVE:
                     $this->result = "Love-All";
                     break;
-                case 1:
+                case FIFTEEN:
                     $this->result = "Fifteen-All";
                     break;
-                case 2:
+                case THIRTY:
                     $this->result = "Thirty-All";
                     break;
-                case 3:
+                case FORTY:
                     $this->result = "Forty-All";
                     break;
                 default:
@@ -33,7 +37,8 @@ class TennisGame
 
             }
         } else {
-            if ($Player1Score >= 4 || $Player2Score >= 4) {
+            $hasWinner = ($Player1Score >= 4 || $Player2Score >= 4);
+            if ($hasWinner) {
                 $minusResult = $Player1Score - $Player2Score;
                 if ($minusResult == 1) {
                     $this->result = "Advantage player1";
@@ -57,16 +62,16 @@ class TennisGame
                         $tempScore = $Player2Score;
                     }
                     switch ($tempScore) {
-                        case 0:
+                        case LOVE:
                             $this->result .= "Love";
                             break;
-                        case 1:
+                        case FIFTEEN:
                             $this->result .= "Fifteen";
                             break;
-                        case 2:
+                        case THIRTY:
                             $this->result .= "Thirty";
                             break;
-                        case 3:
+                        case FORTY:
                             $this->result .= "Forty";
                             break;
                     }
